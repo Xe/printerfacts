@@ -13,3 +13,7 @@ serde = "1.0"
 serde_json = "1.0"
 serde_derive = "1.0"
 rand = "0"
+
+[dependencies.rocket_contrib]
+version = "0.4.2"
+features = ["handlebars_templates"]

@@ -1,16 +1,40 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
+use handlebars::{Context, Handlebars, Helper, HelperResult, JsonRender, Output, RenderContext};
 use rand::prelude::*;
 use rocket::State;
+use rocket_contrib::serve::StaticFiles;
+use rocket_contrib::templates::{handlebars, Template};
 
 #[macro_use]
 extern crate rocket;
 
+#[macro_use]
+extern crate serde_derive;
+
 mod facts;
 
+#[derive(Serialize)]
+struct TemplateContext {
+    title: &'static str,
+    fact: Option<String>,
+    // This key tells handlebars which template is the parent.
+    parent: &'static str,
+}
+
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+fn index(fact_list: State<facts::Facts>) -> Template {
+    let ref facts = *fact_list;
+    let i = thread_rng().gen::<usize>() % facts.len();
+
+    Template::render(
+        "index",
+        &TemplateContext {
+            title: "Printer Facts",
+            fact: Some(facts[i].clone()),
+            parent: "layout",
+        },
+    )
 }
 
 #[get("/fact")]
@@ -25,6 +49,8 @@ fn main() {
     let prometheus = rocket_prometheus::PrometheusMetrics::new();
     let fact_list = facts::make();
     rocket::ignite()
+        .attach(Template::fairing())
+        .mount("/static", StaticFiles::from("public"))
         .attach(prometheus.clone())
         .mount("/metrics", prometheus)
         .manage(fact_list)
