@@ -75,6 +75,7 @@ fn main() {
         .attach(prometheus.clone())
         .mount("/metrics", prometheus)
         .manage(fact_list)
+        .register(catchers![not_found])
         .mount("/", routes_with_openapi![index, fact])
         .mount(
             "/swagger-ui/",
