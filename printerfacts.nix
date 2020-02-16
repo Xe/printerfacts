@@ -19,7 +19,7 @@ in pkgs.stdenv.mkDerivation {
   phases = "installPhase";
 
   installPhase = ''
-    mkdir -p $out/bin $out/public
+    mkdir -p $out/public
 
     cp -rf $src/templates $out/templates
 
