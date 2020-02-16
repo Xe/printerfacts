@@ -1,13 +1,16 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
-use handlebars::{Context, Handlebars, Helper, HelperResult, JsonRender, Output, RenderContext};
 use rand::prelude::*;
 use rocket::State;
 use rocket_contrib::serve::StaticFiles;
-use rocket_contrib::templates::{handlebars, Template};
+use rocket_contrib::templates::Template;
+use rocket_okapi::swagger_ui::{make_swagger_ui, SwaggerUIConfig};
 
 #[macro_use]
 extern crate rocket;
+
+#[macro_use]
+extern crate rocket_okapi;
 
 #[macro_use]
 extern crate serde_derive;
@@ -18,10 +21,12 @@ mod facts;
 struct TemplateContext {
     title: &'static str,
     fact: Option<String>,
+    path: Option<String>,
     // This key tells handlebars which template is the parent.
     parent: &'static str,
 }
 
+#[openapi(skip)]
 #[get("/")]
 fn index(fact_list: State<facts::Facts>) -> Template {
     let ref facts = *fact_list;
@@ -32,17 +37,33 @@ fn index(fact_list: State<facts::Facts>) -> Template {
         &TemplateContext {
             title: "Printer Facts",
             fact: Some(facts[i].clone()),
+            path: None,
             parent: "layout",
         },
     )
 }
 
+/// Returns an exciting fact about printers.
+#[openapi]
 #[get("/fact")]
 fn fact(fact_list: State<facts::Facts>) -> String {
     let ref facts = *fact_list;
     let i = thread_rng().gen::<usize>() % facts.len();
 
     format!("{}", facts[i])
+}
+
+#[catch(404)]
+fn not_found(req: &rocket::Request) -> Template {
+    Template::render(
+        "error/404",
+        &TemplateContext {
+            title: "Not found",
+            fact: None,
+            path: Some(req.uri().path().to_string()),
+            parent: "layout",
+        },
+    )
 }
 
 fn main() {
@@ -54,7 +75,14 @@ fn main() {
         .attach(prometheus.clone())
         .mount("/metrics", prometheus)
         .manage(fact_list)
-        .mount("/", routes![index, fact])
+        .mount("/", routes_with_openapi![index, fact])
+        .mount(
+            "/swagger-ui/",
+            make_swagger_ui(&SwaggerUIConfig {
+                url: Some("../openapi.json".to_owned()),
+                urls: None,
+            }),
+        )
         .launch();
 }
 
