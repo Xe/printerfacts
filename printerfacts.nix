@@ -7,16 +7,23 @@ let
     rustc = rust;
     cargo = rust;
   };
-in
-naersk.buildPackage {
   src = builtins.filterSource
     (path: type: type != "directory" || builtins.baseNameOf path != "target")
     ./.;
+  pfacts = naersk.buildPackage { inherit src; };
+in pkgs.stdenv.mkDerivation {
+  name = pfacts.name;
+  version = pfacts.version;
 
-  postInstall = ''
-    cp -rf $src/public $out/public
+  inherit src;
+  phases = "installPhase";
+
+  installPhase = ''
+    mkdir -p $out/bin $out/public
+
     cp -rf $src/templates $out/templates
 
+    cp -rf ${pfacts}/bin $out/bin
     cp -rf ${gruvbox-css}/gruvbox.css $out/public/gruvbox.css
   '';
 }
