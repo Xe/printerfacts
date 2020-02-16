@@ -13,6 +13,7 @@ jobs:
         with:
           name: xe
       - run: |
+          nix-channel --add https://nixos.org/channels/nixpkgs-unstable
           nix-env -if ./nix/dhall-yaml.nix kubectl doctl
           ./nix/deploy.sh
         env:
