@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#! nix-shell -p bash
 
 echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
