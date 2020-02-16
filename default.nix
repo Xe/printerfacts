@@ -9,7 +9,7 @@ let
   dockerImage = pkg:
     pkgs.dockerTools.buildImage {
       name = "xena/printerfacts";
-      tag = pkg.version;
+      tag = "latest";
 
       contents = [ pkg ];
 
