@@ -13,6 +13,7 @@ in  kms.app.make
       , name = "printerfacts"
       , appPort = 5000
       , image = image
+      , replicas = 2
       , domain = "printerfacts.cetacean.club"
       , leIssuer = "prod"
       }
