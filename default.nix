@@ -7,7 +7,7 @@ let
   printerfacts = callPackage ./printerfacts.nix { };
 
   dockerImage = pkg:
-    pkgs.dockerTools.buildImage {
+    pkgs.dockerTools.buildLayeredImage {
       name = "xena/printerfacts";
       tag = "latest";
 
