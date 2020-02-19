@@ -10,7 +10,10 @@ let
   src = builtins.filterSource
     (path: type: type != "directory" || builtins.baseNameOf path != "target")
     ./.;
-  pfacts = naersk.buildPackage { inherit src; };
+  pfacts = naersk.buildPackage {
+    inherit src;
+    remapPathPrefix = true;
+  };
 in pkgs.stdenv.mkDerivation {
   name = pfacts.name;
   version = pfacts.version;
