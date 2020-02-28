@@ -50,7 +50,7 @@ fn fact(fact_list: State<facts::Facts>) -> String {
     let ref facts = *fact_list;
     let i = thread_rng().gen::<usize>() % facts.len();
 
-    format!("{}", facts[i])
+    facts[i].clone()
 }
 
 #[catch(404)]
