@@ -70,5 +70,11 @@
         "type": "tarball",
         "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/36455d54de0b40d9432bba6d8207a5582210b3eb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "xepkgs": {
+        "ref": "master",
+        "repo": "https://tulpa.dev/Xe/nixpkgs",
+        "rev": "ec14f5608f64d75c373c1507a3c6d8580df7f357",
+        "type": "git"
     }
 }

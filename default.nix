@@ -3,21 +3,18 @@
 let
   sources = import ./nix/sources.nix;
   pkgs = import sources.nixpkgs { };
-  callPackage = pkgs.lib.callPackageWith pkgs;
-  printerfacts = callPackage ./printerfacts.nix { };
+  printerfacts = import ./printerfacts.nix { inherit pkgs sources; };
+  xepkgs = import sources.xepkgs { inherit pkgs sources; };
 
-  dockerImage = pkg:
-    pkgs.dockerTools.buildLayeredImage {
-      name = "xena/printerfacts";
-      tag = "latest";
+  name = "xena/printerfacts";
+  tag = "latest";
 
-      contents = [ pkg ];
+in xepkgs.dockerImage {
+  inherit name tag;
+  contents = [ printerfacts ];
 
-      config = {
-        Cmd = [ "/bin/printerfacts" ];
-        Env = [ "ROCKET_PORT=5000" ];
-        WorkingDir = "/";
-      };
-    };
-
-in dockerImage printerfacts
+  config = {
+    Cmd = [ "/bin/printerfacts" ];
+    Env = [ "ROCKET_PORT=5000" ];
+  };
+}

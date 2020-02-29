@@ -1,15 +1,13 @@
-{ sources ? import ./nix/sources.nix }:
+{ sources ? import ./nix/sources.nix, pkgs ? import sources.nixpkgs { } }:
 let
   rust = import ./nix/rust.nix { inherit sources; };
-  pkgs = import sources.nixpkgs { };
   gruvbox-css = import sources.gruvbox-css { };
   naersk = pkgs.callPackage sources.naersk {
     rustc = rust;
     cargo = rust;
   };
-  src = builtins.filterSource
-    (path: type: type != "directory" || builtins.baseNameOf path != "target")
-    ./.;
+  xepkgs = import sources.xepkgs { inherit sources pkgs; };
+  src = xepkgs.srcNoTarget ./.;
   pfacts = naersk.buildPackage {
     inherit src;
     remapPathPrefix = true;
