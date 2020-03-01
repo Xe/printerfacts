@@ -9,13 +9,13 @@ edition = "2018"
 [dependencies]
 okapi = "0.3"
 rand = "0"
-rocket = "0.4"
-rocket_okapi = "0.3.1"
-rocket_prometheus = "0.3"
-serde = "1.0"
-serde_json = "1.0"
-serde_derive = "1.0"
+rocket = "0.4.3"
+rocket_okapi = "^0.3"
+rocket_prometheus = "^0.3"
+serde = "^1"
+serde_json = "^1"
+serde_derive = "^1"
 
 [dependencies.rocket_contrib]
-version = "0.4.2"
+version = "0.4.3"
 features = ["handlebars_templates"]

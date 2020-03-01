@@ -455,12 +455,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7ffc5c5338469d4d3ea17d269fa8ea3512ad247247c30bd2df69e68309ed0a08"
 
 [[package]]
-name = "maybe-uninit"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "60302e4db3a61da70c0cb7991976248362f30319e88850c487b9b95bbf059e00"
-
-[[package]]
 name = "memchr"
 version = "2.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -807,9 +801,9 @@ dependencies = [
 
 [[package]]
 name = "rocket"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42c1e9deb3ef4fa430d307bfccd4231434b707ca1328fae339c43ad1201cc6f7"
+checksum = "0aa9ab5fad4a9b366ae884f5b5461e166fe8f94d23a561a91dfaab046c2f4fde"
 dependencies = [
  "atty",
  "base64 0.10.1",
@@ -828,11 +822,12 @@ dependencies = [
 
 [[package]]
 name = "rocket_codegen"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79aa1366f9b2eccddc05971e17c5de7bb75a5431eb12c2b5c66545fd348647f4"
+checksum = "c56c540f73ae2291e8c1e4f9757f92fec7015c09fd90d7bb70349386a111602c"
 dependencies = [
  "devise",
+ "glob",
  "indexmap",
  "quote 0.6.13",
  "rocket_http",
@@ -842,9 +837,9 @@ dependencies = [
 
 [[package]]
 name = "rocket_contrib"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e0fa5c1392135adc0f96a02ba150ac4c765e27c58dbfd32aa40678e948f6e56f"
+checksum = "66926894ef94396204c53885f54a1b0e94a88ce6c9478c2fd403261fc0efb523"
 dependencies = [
  "glob",
  "handlebars",
@@ -857,16 +852,16 @@ dependencies = [
 
 [[package]]
 name = "rocket_http"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b1391457ee4e80b40d4b57fa5765c0f2836b20d73bcbee4e3f35d93cf3b80817"
+checksum = "968a07cbfa9f8c8a0239aba359b80e1281e85da9415795c68f3ddeb5e1d636d6"
 dependencies = [
  "cookie",
  "hyper",
  "indexmap",
  "pear",
  "percent-encoding",
- "smallvec 0.6.13",
+ "smallvec",
  "state",
  "time",
  "unicode-xid 0.1.0",
@@ -1016,15 +1011,6 @@ checksum = "c111b5bd5695e56cffe5129854aa230b39c93a305372fdbb2668ca2394eea9f8"
 
 [[package]]
 name = "smallvec"
-version = "0.6.13"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7b0758c52e15a8b5e3691eae6cc559f08eee9406e548a4477ba4e67770a82b6"
-dependencies = [
- "maybe-uninit",
-]
-
-[[package]]
-name = "smallvec"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5c2fb2ec9bcd216a5b0d0ccf31ab17b5ed1d627960edff65bbe95d3ce221cefc"
@@ -1146,7 +1132,7 @@ version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5479532badd04e128284890390c1e876ef7a993d0570b3597ae43dfa1d59afa4"
 dependencies = [
- "smallvec 1.2.0",
+ "smallvec",
 ]
 
 [[package]]
