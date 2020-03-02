@@ -680,16 +680,16 @@ dependencies = [
 
 [[package]]
 name = "prometheus"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5567486d5778e2c6455b1b90ff1c558f29e751fc018130fa182e15828e728af1"
+checksum = "b0575e258dab62268e7236d7307caa38848acbda7ec7ab87bd9093791e999d20"
 dependencies = [
  "cfg-if",
  "fnv",
  "lazy_static",
  "protobuf",
- "quick-error",
  "spin",
+ "thiserror",
 ]
 
 [[package]]
@@ -897,9 +897,9 @@ dependencies = [
 
 [[package]]
 name = "rocket_prometheus"
-version = "0.3.2"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "87e4954e976f59c2ef8766aaa65352c8e6776f86cf99943f5f45785dab4160f8"
+checksum = "da320c747c27c53ad07eaec0f51c058c76b46f7a3628807edbcc3d29e29894f0"
 dependencies = [
  "prometheus",
  "rocket",
@@ -1053,6 +1053,26 @@ dependencies = [
  "proc-macro2 1.0.8",
  "quote 1.0.2",
  "unicode-xid 0.2.0",
+]
+
+[[package]]
+name = "thiserror"
+version = "1.0.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee14bf8e6767ab4c687c9e8bc003879e042a96fd67a3ba5934eadb6536bef4db"
+dependencies = [
+ "thiserror-impl",
+]
+
+[[package]]
+name = "thiserror-impl"
+version = "1.0.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a7b51e1fbc44b5a0840be594fbc0f960be09050f2617e61e6aa43bef97cd3ef4"
+dependencies = [
+ "proc-macro2 1.0.8",
+ "quote 1.0.2",
+ "syn 1.0.14",
 ]
 
 [[package]]
