@@ -91,6 +91,7 @@ fn main() {
 mod tests {
     use rocket::http::Status;
     use rocket::local::*;
+    use rocket_contrib::templates::Template;
 
     #[test]
     fn facts() {
@@ -99,6 +100,17 @@ mod tests {
             .mount("/", routes![super::fact]);
         let client = Client::new(rkt).expect("valid rocket");
         let response = client.get("/fact").dispatch();
+        assert_eq!(response.status(), Status::Ok);
+    }
+
+    #[test]
+    fn page() {
+        let rkt = rocket::ignite()
+            .attach(Template::fairing())
+            .manage(super::facts::make())
+            .mount("/", routes![super::index]);
+        let client = Client::new(rkt).expect("valid rocket");
+        let response = client.get("/").dispatch();
         assert_eq!(response.status(), Status::Ok);
     }
 }
