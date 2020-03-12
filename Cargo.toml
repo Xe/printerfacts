@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 okapi = "0.3"
 rand = "0"
-rocket = "0.4.3"
+rocket = "0.4.4"
 rocket_okapi = "^0.3"
 rocket_prometheus = "^0.4"
 serde = "^1"
