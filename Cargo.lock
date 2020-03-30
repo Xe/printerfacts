@@ -557,7 +557,18 @@ version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a62e8c05972b7b21c71e66fa99e61e36fc6f771c649a0592f0aeef56f30f9ec"
 dependencies = [
- "schemars",
+ "schemars 0.6.5",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "okapi"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e969ac53c86c158761836e746be203f4cfd774445bd8aff4bfdcf8e42dd93891"
+dependencies = [
+ "schemars 0.7.0",
  "serde",
  "serde_json",
 ]
@@ -649,7 +660,7 @@ checksum = "74490b50b9fbe561ac330df47c08f3f33073d2d00c150f719147d7c54522fa1b"
 name = "printerfacts"
 version = "0.1.0"
 dependencies = [
- "okapi",
+ "okapi 0.4.0",
  "rand",
  "rocket",
  "rocket_contrib",
@@ -873,11 +884,11 @@ version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dfb62bf82c06d7559d092e50ed7ee421d5148be3f91d4070489c5c07a6746e54"
 dependencies = [
- "okapi",
+ "okapi 0.3.0",
  "rocket",
  "rocket_contrib",
  "rocket_okapi_codegen",
- "schemars",
+ "schemars 0.6.5",
  "serde",
  "serde_json",
 ]
@@ -932,7 +943,18 @@ version = "0.6.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07569773d6aaf3324812c6572244aec08521b64ce056f2be3b5cc135fb63caec"
 dependencies = [
- "schemars_derive",
+ "schemars_derive 0.6.5",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "schemars"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10db1d3c2260e94570e1a492c762e62c11e1aac8869a2c3d869137995e6810d4"
+dependencies = [
+ "schemars_derive 0.7.0",
  "serde",
  "serde_json",
 ]
@@ -942,6 +964,18 @@ name = "schemars_derive"
 version = "0.6.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "38535ecef477d8495dc6c288e876c03c4428b8141ffa57803111348cf14230a9"
+dependencies = [
+ "proc-macro2 1.0.8",
+ "quote 1.0.2",
+ "serde_derive_internals",
+ "syn 1.0.14",
+]
+
+[[package]]
+name = "schemars_derive"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "706d022205b93f710ea83037db4fc103358dd24e61a330d287d45d93fe1dc250"
 dependencies = [
  "proc-macro2 1.0.8",
  "quote 1.0.2",

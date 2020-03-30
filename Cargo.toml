@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-okapi = "0.3"
+okapi = "0.4"
 rand = "0"
 rocket = "0.4.4"
 rocket_okapi = "^0.3"
