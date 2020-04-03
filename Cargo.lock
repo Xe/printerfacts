@@ -869,9 +869,9 @@ dependencies = [
 
 [[package]]
 name = "rocket_okapi"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b5cfde25e1f867d2e11df408e388ed32acdb7285840f6acd3a6e85c644e817f"
+checksum = "f82d90a33f09d580a1efaebf1bef4e38b1711e86437c2795e88875ac88c9b6c4"
 dependencies = [
  "okapi",
  "rocket",
@@ -884,9 +884,9 @@ dependencies = [
 
 [[package]]
 name = "rocket_okapi_codegen"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f59fff82be35287f41b0271ef38bff4f588a0fee10f548a3d8f6cddb4c43ccb0"
+checksum = "1be22909d00b4399e9a5ea48eca3ce9f869946adc170408d22e0ac2a51d69241"
 dependencies = [
  "darling",
  "proc-macro2 1.0.8",
