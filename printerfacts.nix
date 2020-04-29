@@ -6,7 +6,7 @@ let
     rustc = rust;
     cargo = rust;
   };
-  xepkgs = import sources.xepkgs { inherit sources pkgs; };
+  xepkgs = import sources.xepkgs { inherit pkgs; };
   src = xepkgs.srcNoTarget ./.;
   pfacts = naersk.buildPackage {
     inherit src;

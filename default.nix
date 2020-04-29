@@ -4,7 +4,7 @@ let
   sources = import ./nix/sources.nix;
   pkgs = import sources.nixpkgs { };
   printerfacts = import ./printerfacts.nix { inherit pkgs sources; };
-  xepkgs = import sources.xepkgs { inherit pkgs sources; };
+  xepkgs = import sources.xepkgs { inherit pkgs; };
 
   name = "xena/printerfacts";
   tag = "latest";
