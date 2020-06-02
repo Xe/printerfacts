@@ -4,7 +4,6 @@ use rand::prelude::*;
 use rocket::State;
 use rocket_contrib::serve::StaticFiles;
 use rocket_contrib::templates::Template;
-use rocket_okapi::swagger_ui::{make_swagger_ui, SwaggerUIConfig};
 
 #[macro_use]
 extern crate rocket;
@@ -77,13 +76,6 @@ fn main() {
         .manage(fact_list)
         .register(catchers![not_found])
         .mount("/", routes_with_openapi![index, fact])
-        .mount(
-            "/swagger-ui/",
-            make_swagger_ui(&SwaggerUIConfig {
-                url: Some("../openapi.json".to_owned()),
-                urls: None,
-            }),
-        )
         .launch();
 }
 
