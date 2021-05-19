@@ -98,6 +98,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "53d1ccbaf7d9ec9537465a97bf19edc1a4e158ecb49fc16178202238c569cc42"
 
 [[package]]
+name = "base64"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
+
+[[package]]
 name = "bitflags"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -374,6 +380,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "hashbrown"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d7afe4a420e3fe79967a00898cc1f4db7c8a49a9333a29f8a4bd76a253d5cd04"
+
+[[package]]
 name = "hermit-abi"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -446,11 +458,12 @@ dependencies = [
 
 [[package]]
 name = "indexmap"
-version = "1.3.2"
+version = "1.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "076f042c5b7b98f31d205f1249267e12a6518c1481e9dae9764af19b707d2292"
+checksum = "824845a0bf897a9042383849b02c1bc219c2383772efcd5c6f9766fa4b81aef3"
 dependencies = [
  "autocfg",
+ "hashbrown",
 ]
 
 [[package]]
@@ -896,12 +909,12 @@ checksum = "b28dfe3fe9badec5dbf0a79a9cccad2cfc2ab5484bdb3e44cbd1ae8b3ba2be06"
 
 [[package]]
 name = "rocket"
-version = "0.4.5"
+version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6130967b369cfb8411b0b73e96fcba1229c32a9cc6f295d144f879bfced13c6e"
+checksum = "864129cddfc12f5f411280837483d8b962d7b8dffc39b8639521ba3d665a8fca"
 dependencies = [
  "atty",
- "base64 0.12.1",
+ "base64 0.13.0",
  "log 0.4.8",
  "memchr",
  "num_cpus",
@@ -917,9 +930,9 @@ dependencies = [
 
 [[package]]
 name = "rocket_codegen"
-version = "0.4.5"
+version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cb852e6da168fb948a8f2b798ba2e2f0e4fc860eae0efa9cf2bf0f5466bb0425"
+checksum = "ead6f30d0f57d1e81fa2182e7698cc43ed6b3a64e697f81337e40e730cdccbc8"
 dependencies = [
  "devise",
  "glob",
@@ -947,9 +960,9 @@ dependencies = [
 
 [[package]]
 name = "rocket_http"
-version = "0.4.5"
+version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1aff5a5480175f2f553a876b251e9350c74196128806d176da3a51c82aab5428"
+checksum = "596061b85bcc644728653978de084bb08ddc8fe3c41bee9c013bd3339861b109"
 dependencies = [
  "cookie",
  "hyper",
