@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "justinwoo",
         "repo": "easy-dhall-nix",
-        "rev": "35bca5ba56b7b3f8684aa0afbb65608159beb5ce",
-        "sha256": "16l71qzzfkv4sbxl03r291nswsrkr3g13viqkma2s8r5vy9la3al",
+        "rev": "1f6eecab5c276a59858a10bbfcbbc5611187da03",
+        "sha256": "07n7y93xfiwr82yx2v8r5mxcafsxgs1hdl1ghq6xah5v827fb6q0",
         "type": "tarball",
-        "url": "https://github.com/justinwoo/easy-dhall-nix/archive/35bca5ba56b7b3f8684aa0afbb65608159beb5ce.tar.gz",
+        "url": "https://github.com/justinwoo/easy-dhall-nix/archive/1f6eecab5c276a59858a10bbfcbbc5611187da03.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "gruvbox-css": {
@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "Xe",
         "repo": "gruvbox-css",
-        "rev": "6e1841c94190a1e06e63a2596767e66c35671320",
-        "sha256": "0s7whnin63558i70wp3by3rydsdx0qdzh5553km1s29w81npmgj6",
+        "rev": "0e78b4332ead8635697b990f309608d99b46967e",
+        "sha256": "00n59d5f5k9aq0pd99i0nkrzisanny9nwgzqjc9ijy4y66r9bnvn",
         "type": "tarball",
-        "url": "https://github.com/Xe/gruvbox-css/archive/6e1841c94190a1e06e63a2596767e66c35671320.tar.gz",
+        "url": "https://github.com/Xe/gruvbox-css/archive/0e78b4332ead8635697b990f309608d99b46967e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "naersk": {
@@ -29,22 +29,10 @@
         "homepage": "",
         "owner": "nmattia",
         "repo": "naersk",
-        "rev": "a82fd7dc31a58c462b6dfa9d9d886fa2cc75dfd4",
-        "sha256": "00bjwir52y6jbf0b22qy9qxramw35k5fc7kp9hymr1zgpmw9kbwg",
+        "rev": "4f7426c362809e472d03c369d3674317c32b6863",
+        "sha256": "1c0f2c4gkfmrpykmk25ck8x17nq7l14di8vvxlibbigzy5jacdaf",
         "type": "tarball",
-        "url": "https://github.com/nmattia/naersk/archive/a82fd7dc31a58c462b6dfa9d9d886fa2cc75dfd4.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "niv": {
-        "branch": "master",
-        "description": "Easy dependency management for Nix projects",
-        "homepage": "https://github.com/nmattia/niv",
-        "owner": "nmattia",
-        "repo": "niv",
-        "rev": "f73bf8d584148677b01859677a63191c31911eae",
-        "sha256": "0jlmrx633jvqrqlyhlzpvdrnim128gc81q5psz2lpp2af8p8q9qs",
-        "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/f73bf8d584148677b01859677a63191c31911eae.tar.gz",
+        "url": "https://github.com/nmattia/naersk/archive/4f7426c362809e472d03c369d3674317c32b6863.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -53,28 +41,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs-channels",
-        "rev": "10100a97c8964e82b30f180fda41ade8e6f69e41",
-        "sha256": "011f36kr3c1ria7rag7px26bh73d1b0xpqadd149bysf4hg17rln",
+        "rev": "502845c3e31ef3de0e424f3fcb09217df2ce6df6",
+        "sha256": "0fcqpsy6y7dgn0y0wgpa56gsg0b0p8avlpjrd79fp4mp9bl18nda",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/10100a97c8964e82b30f180fda41ade8e6f69e41.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/502845c3e31ef3de0e424f3fcb09217df2ce6df6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "nixpkgs-mozilla": {
-        "branch": "master",
-        "description": "mozilla related nixpkgs (extends nixos/nixpkgs repo)",
-        "homepage": null,
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "rev": "e912ed483e980dfb4666ae0ed17845c4220e5e7c",
-        "sha256": "08fvzb8w80bkkabc1iyhzd15f4sm7ra10jn32kfch5klgl0gj3j3",
-        "type": "tarball",
-        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/e912ed483e980dfb4666ae0ed17845c4220e5e7c.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "xepkgs": {
-        "ref": "master",
-        "repo": "https://tulpa.dev/Xe/nixpkgs",
-        "rev": "5621d41482bca79d05c97758bb86eeb9099e26c9",
-        "type": "git"
     }
 }

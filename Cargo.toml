@@ -7,15 +7,11 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-okapi = "0.4"
+pfacts = "0"
 rand = "0"
-rocket = "0.4.5"
-rocket_okapi = "^0.5"
-rocket_prometheus = "^0.6"
-serde = "^1"
-serde_json = "^1"
-serde_derive = "^1"
+rocket = "0.5.0-rc.1"
+serde = { version = "^1", features = [ "derive" ] }
 
-[dependencies.rocket_contrib]
-version = "0.4.5"
-features = ["handlebars_templates"]
+[dependencies.rocket_dyn_templates]
+version = "0.1.0-rc.1"
+features = [ "handlebars" ]

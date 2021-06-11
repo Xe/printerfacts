@@ -1,20 +1,10 @@
-#![feature(proc_macro_hygiene, decl_macro)]
-
 use rand::prelude::*;
-use rocket::State;
-use rocket_contrib::serve::StaticFiles;
-use rocket_contrib::templates::Template;
+use rocket::{State, fs::FileServer};
+use serde::Serialize;
+use rocket_dyn_templates::Template;
 
 #[macro_use]
 extern crate rocket;
-
-#[macro_use]
-extern crate rocket_okapi;
-
-#[macro_use]
-extern crate serde_derive;
-
-mod facts;
 
 #[derive(Serialize)]
 struct TemplateContext {
@@ -25,9 +15,8 @@ struct TemplateContext {
     parent: &'static str,
 }
 
-#[openapi(skip)]
 #[get("/")]
-fn index(fact_list: State<facts::Facts>) -> Template {
+async fn index(fact_list: &State<pfacts::Facts>) -> Template {
     let ref facts = *fact_list;
     let i = thread_rng().gen::<usize>() % facts.len();
 
@@ -43,9 +32,8 @@ fn index(fact_list: State<facts::Facts>) -> Template {
 }
 
 /// Returns an exciting fact about printers.
-#[openapi]
 #[get("/fact")]
-fn fact(fact_list: State<facts::Facts>) -> String {
+async fn fact(fact_list: &State<pfacts::Facts>) -> String {
     let ref facts = *fact_list;
     let i = thread_rng().gen::<usize>() % facts.len();
 
@@ -65,43 +53,40 @@ fn not_found(req: &rocket::Request) -> Template {
     )
 }
 
-fn main() {
-    let prometheus = rocket_prometheus::PrometheusMetrics::new();
-    let fact_list = facts::make();
-    rocket::ignite()
+#[launch]
+fn rocket() -> _ {
+    let fact_list = pfacts::make();
+    rocket::build()
         .attach(Template::fairing())
-        .mount("/static", StaticFiles::from("public"))
-        .attach(prometheus.clone())
-        .mount("/metrics", prometheus)
+        .mount("/static", FileServer::from("public"))
         .manage(fact_list)
-        .register(catchers![not_found])
-        .mount("/", routes_with_openapi![index, fact])
-        .launch();
+        .register("/", catchers![not_found])
+        .mount("/", routes![index, fact])
 }
 
 #[cfg(test)]
 mod tests {
     use rocket::http::Status;
-    use rocket::local::*;
-    use rocket_contrib::templates::Template;
+    use rocket::local::blocking::Client;
+    use rocket_dyn_templates::Template;
 
     #[test]
     fn facts() {
-        let rkt = rocket::ignite()
-            .manage(super::facts::make())
+        let rkt = rocket::build()
+            .manage(pfacts::make())
             .mount("/", routes![super::fact]);
-        let client = Client::new(rkt).expect("valid rocket");
+        let client = Client::tracked(rkt).expect("valid rocket");
         let response = client.get("/fact").dispatch();
         assert_eq!(response.status(), Status::Ok);
     }
 
     #[test]
     fn page() {
-        let rkt = rocket::ignite()
+        let rkt = rocket::build()
             .attach(Template::fairing())
-            .manage(super::facts::make())
+            .manage(pfacts::make())
             .mount("/", routes![super::index]);
-        let client = Client::new(rkt).expect("valid rocket");
+        let client = Client::tracked(rkt).expect("valid rocket");
         let response = client.get("/").dispatch();
         assert_eq!(response.status(), Status::Ok);
     }

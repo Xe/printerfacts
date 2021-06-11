@@ -1,20 +1,31 @@
-{ system ? builtins.currentSystem }:
-
+{ sources ? import ./nix/sources.nix, pkgs ? import sources.nixpkgs { }, makeWrapper ? pkgs.makeWrapper }:
 let
-  sources = import ./nix/sources.nix;
-  pkgs = import sources.nixpkgs { };
-  printerfacts = import ./printerfacts.nix { inherit pkgs sources; };
-  xepkgs = import sources.xepkgs { inherit pkgs; };
-
-  name = "xena/printerfacts";
-  tag = "latest";
-
-in xepkgs.dockerImage {
-  inherit name tag;
-  contents = [ printerfacts ];
-
-  config = {
-    Cmd = [ "/bin/printerfacts" ];
-    Env = [ "ROCKET_PORT=5000" ];
+  srcNoTarget = dir:
+    builtins.filterSource
+    (path: type: type != "directory" || builtins.baseNameOf path != "target")
+    dir;
+  gruvbox-css = import sources.gruvbox-css { };
+  naersk = pkgs.callPackage sources.naersk { };
+  src = srcNoTarget ./.;
+  pfacts = naersk.buildPackage {
+    inherit src;
+    remapPathPrefix = true;
   };
+in pkgs.stdenv.mkDerivation {
+  name = pfacts.name;
+  version = pfacts.version;
+
+  inherit src;
+  phases = "installPhase";
+
+  buildInputs = [ makeWrapper ];
+
+  installPhase = ''
+    mkdir -p $out/public
+
+    cp -rf $src/templates $out/templates
+
+    cp -rf ${pfacts}/bin $out/bin
+    cp -rf ${gruvbox-css}/gruvbox.css $out/public/gruvbox.css
+  '';
 }
