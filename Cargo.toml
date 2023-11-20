@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 pfacts = "0"
 rand = "0"
-rocket = "0.5.0-rc.1"
+rocket = "0.5.0"
 serde = { version = "^1", features = [ "derive" ] }
 
 [dependencies.rocket_dyn_templates]
